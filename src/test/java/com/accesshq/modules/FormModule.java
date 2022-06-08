@@ -19,6 +19,14 @@ public class FormModule {
         driver.findElement(By.id("email")).sendKeys(email);
     }
 
+    public void selState(String state) {
+//        Select selectState = new Select(driver.findElement(By.id("state")));
+//        selectState.selectByVisibleText(state);
+//        driver.findElement(By.cssSelector("[id=state]")).click();
+//        driver.findElement(By.id("list-item-377-0")).click();
+        driver.findElement(By.id("state")).sendKeys(state);
+    }
+
     public void clickAgree() {
         driver.findElement(By.cssSelector("[for=agree]")).click();
     }
