@@ -1,17 +1,28 @@
 package com.accesshq.models;
 
+import com.accesshq.strategies.MatchingStrategy;
 import net.bytebuddy.implementation.bytecode.Throw;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
+import java.util.ArrayList;
 
 public class PlanetModel {
     WebDriver driver;
+    ArrayList<PlanetCard> allPlanets;
 
     public PlanetModel(WebDriver driver) {
         this.driver = driver;
+    }
+
+    private ArrayList<PlanetCard> getAllPlanets() {
+        var allPlanets = new ArrayList<PlanetCard>();
+        for(WebElement p : driver.findElements(By.className("planet"))) {
+            allPlanets.add(new PlanetCard(p));
+        }
+        return allPlanets;
     }
 
     public void selectPlanets() {
@@ -39,16 +50,25 @@ public class PlanetModel {
                 replace(" km", "").replaceAll(",", ""));
     }
 
-    public String checkFurthest() throws Exception {
-        Long distance = Long.valueOf(0);
+    public Long checkFurthest() throws Exception {
+        Long distance = 0L;
         for(var p : driver.findElements(By.className("planet"))) {
             if(checkDistance(p) > distance){
                 distance = checkDistance(p);
             }
             else {
-                return p.findElement(By.className("planet")).getText();
+                return distance;
             }
         }
-        throw new Exception("Planet does not exist");
+        throw new Exception("Planet not found");
+    }
+
+    public PlanetCard getPlanet(MatchingStrategy strategy) throws Exception {
+        for(PlanetCard p : getAllPlanets()) {
+            if(strategy.match(p)) {
+                return p;
+            }
+        }
+        throw new Exception("Planet not found");
     }
 }
