@@ -6,8 +6,8 @@ import java.util.Locale;
 
 public class PlanetCard {
     WebElement planetElement;
-    public PlanetCard(WebElement planet) {
-        this.planetElement = planet;
+    public PlanetCard(WebElement planetElement) {
+        this.planetElement = planetElement;
     }
 
     public String getName() {
