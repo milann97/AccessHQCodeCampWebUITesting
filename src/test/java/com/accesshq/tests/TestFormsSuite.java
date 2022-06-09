@@ -1,12 +1,11 @@
 package com.accesshq.tests;
 
-import com.accesshq.modules.FormModule;
+import com.accesshq.models.FormModel;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.*;
-import org.openqa.selenium.interactions.Actions.*;
 
-public class TestPlaygroundSuite {
+public class TestFormsSuite {
     WebDriver driver;
 
     @BeforeEach
@@ -30,7 +29,7 @@ public class TestPlaygroundSuite {
     @Test
     public void modernFormTest() {
         //Arrange
-        var form = new FormModule(driver);
+        var form = new FormModel(driver);
         driver.findElement(By.cssSelector("[aria-label=forms]")).click();
         form.setName("A");
         form.setEmail("a@gmail.com");
@@ -47,7 +46,7 @@ public class TestPlaygroundSuite {
     @Test
     public void tradFormTest() {
         //Arrange
-        var form = new FormModule(driver);
+        var form = new FormModel(driver);
         driver.findElement(By.cssSelector("[aria-label=forms]")).click();
         driver.findElement(By.cssSelector("[aria-selected=false")).click();
         form.setAddress("1 A Road");

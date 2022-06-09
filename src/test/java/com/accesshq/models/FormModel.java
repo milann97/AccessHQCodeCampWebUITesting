@@ -1,13 +1,13 @@
-package com.accesshq.modules;
+package com.accesshq.models;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
 
-public class FormModule {
+public class FormModel {
     WebDriver driver;
-    public FormModule(WebDriver driver) {
+    public FormModel(WebDriver driver) {
         this.driver = driver;
     }
 
