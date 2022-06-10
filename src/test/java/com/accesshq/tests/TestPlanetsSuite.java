@@ -39,7 +39,7 @@ public class TestPlanetsSuite {
     }
 
     @Test
-    public void exploreJuptiterByDistanceTest() throws Exception {
+    public void exploreJupiterByDistanceTest() throws Exception {
         //Arrange
         var planet = new PlanetModel(driver);
         planet.selectPlanets();
